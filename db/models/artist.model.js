@@ -1,52 +1,44 @@
-const { Sequelize, DataTypes, Model } = require('sequelize');
 
-const ARTIST_TABLE = 'artists';
+const {Sequelize, Model, DataTypes } = require('sequelize')
+
+const ARTIST_TABLE = 'artist'
 
 const ArtistSchema = {
-  id: {
+id:{
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
     type: DataTypes.INTEGER
-  },
-  name: {
+},
+name:{
     allowNull: false,
     type: DataTypes.STRING
-  },
-  lastName: {
-    allowNull: false,
-    type: DataTypes.STRING,
-    field: "last_name"
-  },
-  info: {
+},
+lastName:{
+    allowNull: true,
+    field:'last_name',
+    type: DataTypes.STRING
+},
+info:{
     allowNull: false,
     type: DataTypes.STRING
-  },
-  monthlyListeners: {
-    allowNull: false,
-    type: DataTypes.INTEGER,
-    field: "monthly_listeners"
-  }
-};
-
-class Artist extends Model {
-  static associate(models) {
-    this.belongsToMany(models.Song, {
-      through: models.SongArtist,
-      as: 'songs',
-      foreignKey: 'artistId',
-      otherKey: 'songId'
-    });
-  }
-
-  static config(sequelize) {
-    return {
-      sequelize,
-      tableName: ARTIST_TABLE,
-      modelName: 'Artist',
-      timestamps: false
-    };
-  }
+}
 }
 
-module.exports = { Artist, ArtistSchema, ARTIST_TABLE };
+
+class Artist extends Model{
+    static associate (models){
+        //
+    }
+    static config(sequelize){
+        return{
+            sequelize,
+            tableName:ARTIST_TABLE,
+            modelName:'Artist',
+            timestamps:false
+        }
+    }
+}
+
+
+module.exports = { Artist,ARTIST_TABLE,ArtistSchema }

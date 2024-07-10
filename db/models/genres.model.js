@@ -1,38 +1,43 @@
-const { Sequelize, Model, DataTypes }= require('sequelize')
+const {Sequelize, Model, DataTypes } = require('sequelize')
+
 
 const GENRES_TABLE = 'genres'
 
-const GenresSchema= {
-    id:{
-        allowNull:false,
-        autoIncrement:true,
-        type:DataTypes.INTEGER
-    },
-    title:{
-        allowNull:false,
-        type:DataTypes.STRING,
-    },
-    description:{
-        allowNull:false,
-        type:DataTypes.STRING,
-    }
+const GenresSchema ={
+id:{
+    allowNull: false,
+    autoIncrement: true,
+    primaryKey: true,
+    type: DataTypes.INTEGER
+},
+title:{
+    allowNull:false,
+    type:DataTypes.STRING
+},
+info:{
+    allowNull:false,
+    type:DataTypes.STRING
+},
+BestSingers:{
+    allowNull:false,
+    type:DataTypes.STRING,
+    field:'best_singers'
+}
 }
 
-class Genres extends Model{
-    static associate(models){
-        this.hasMany(models.Song,{
-            foreignKey:'genresId',
-            as:'songs'
-        })
+
+class Genre extends Model{
+    static associate (models){
+        //
     }
     static config(sequelize){
         return{
             sequelize,
-            tableName:GENRES_TABLE,
-            modelName:'Genres',
+            tableName: GENRES_TABLE,
+            modelName:'Genre',
             timestamps:false
         }
     }
 }
 
-module.exports = { Genres, GenresSchema,GENRES_TABLE}
+module.exports = { Genre, GENRES_TABLE, GenresSchema  }
