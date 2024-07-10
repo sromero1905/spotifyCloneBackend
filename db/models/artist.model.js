@@ -22,7 +22,22 @@ lastName:{
 info:{
     allowNull: false,
     type: DataTypes.STRING
-}
+},
+birthDate:{
+    allowNull:false,
+    type:DataTypes.DATE,
+    field:'birt_date'
+},
+image:{
+    allowNull:false,
+    type:DataTypes.TEXT
+},
+createdAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'created_at',
+    defaultValue: Sequelize.NOW
+  }
 }
 
 

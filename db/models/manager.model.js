@@ -1,26 +1,27 @@
 const {Sequelize, Model, DataTypes } = require('sequelize')
 
-const SONG_TABLE = 'song'
 
-const SongSchema = {
+const MANAGER_TABLE = 'manager'
+
+const ManagerSchema = {
     id:{
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    title:{
+    name:{
         allowNull:false,
         type:DataTypes.STRING
     },
-    duration:{
+    lastName:{
         allowNull:false,
-        type:DataTypes.INTEGER
+        field:'last_name',
+        type:DataTypes.STRING
     },
-    releseDate:{
+    company:{
         allowNull:false,
-        type:DataTypes.DATE,
-        field:'relese_date'
+        type:DataTypes.STRING
     },
     createdAt: {
         allowNull: false,
@@ -30,20 +31,18 @@ const SongSchema = {
       }
 }
 
-
-class Song extends Model{
+class Manager extends Model{
     static associate (models){
         //
     }
     static config(sequelize){
         return{
             sequelize,
-            tableName: SONG_TABLE,
-            modelName:'Song',
-            timestamps:false
+           tableName:MANAGER_TABLE,
+           modelName:'Manager',
+           timestamps:false
         }
     }
 }
 
-
-module.exports = {  Song, SongSchema, SONG_TABLE }
+module.exports= {  MANAGER_TABLE,Manager,ManagerSchema }

@@ -1,26 +1,33 @@
 const {Sequelize, Model, DataTypes } = require('sequelize')
 
-const SONG_TABLE = 'song'
+const USER_TABLE = 'user'
 
-const SongSchema = {
+const UserSchema = {
     id:{
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: DataTypes.INTEGER
+        
     },
-    title:{
+    password:{
         allowNull:false,
         type:DataTypes.STRING
     },
-    duration:{
+    username:{
         allowNull:false,
-        type:DataTypes.INTEGER
+        unique:true,
+        type:DataTypes.STRING,
+        field:'user_name'
     },
-    releseDate:{
+    name:{
         allowNull:false,
-        type:DataTypes.DATE,
-        field:'relese_date'
+        type:DataTypes.STRING
+    },
+    profilePicture:{
+        allowNull:true,
+        type:DataTypes.TEXT,
+        field:'profile_picture'
     },
     createdAt: {
         allowNull: false,
@@ -28,22 +35,22 @@ const SongSchema = {
         field: 'created_at',
         defaultValue: Sequelize.NOW
       }
+
 }
 
-
-class Song extends Model{
-    static associate (models){
+class User extends Model{
+    static associate(models){
         //
     }
     static config(sequelize){
         return{
             sequelize,
-            tableName: SONG_TABLE,
-            modelName:'Song',
+            tableName:USER_TABLE,
+            modelName:'User',
             timestamps:false
         }
     }
 }
 
 
-module.exports = {  Song, SongSchema, SONG_TABLE }
+module.exports = {  User, UserSchema, USER_TABLE }

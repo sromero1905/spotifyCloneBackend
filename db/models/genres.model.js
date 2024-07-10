@@ -22,7 +22,13 @@ BestSingers:{
     allowNull:false,
     type:DataTypes.STRING,
     field:'best_singers'
-}
+},
+createdAt: {
+    allowNull: false,
+    type: DataTypes.DATE,
+    field: 'created_at',
+    defaultValue: Sequelize.NOW
+  }
 }
 
 
