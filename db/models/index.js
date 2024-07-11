@@ -16,7 +16,7 @@ Genre.init(GenresSchema, Genre.config(sequelize))
 
 User.init(UserSchema, User.config(sequelize))
 Manager.init(ManagerSchema, Manager.config(sequelize))
-Album.init(AlbumSchema, AlbumSchema.config(sequelize))
+Album.init(AlbumSchema, Album.config(sequelize))
 
 
 

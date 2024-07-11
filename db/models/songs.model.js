@@ -17,10 +17,10 @@ const SongSchema = {
         allowNull:false,
         type:DataTypes.INTEGER
     },
-    releseDate:{
+    releaseDate:{
         allowNull:false,
         type:DataTypes.DATE,
-        field:'relese_date'
+        field:'release_date'
     },
     createdAt: {
         allowNull: false,

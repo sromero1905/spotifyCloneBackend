@@ -8,13 +8,14 @@ services:
       - POSTGRES_USER=santi
       - POSTGRES_PASSWORD=buenosaires2024
     ports:
-      - "5432:5432"
+      - "5433:5432"  
     volumes:
-      - "./postgres_data:/var/lib/postgressql/data"
+      - ./postgres_data_spotify:/var/lib/postgresql/data  
+
   pgadmin:
     image: dpage/pgadmin4
     environment:
       - PGADMIN_DEFAULT_EMAIL=admin@mail.com
       - PGADMIN_DEFAULT_PASSWORD=buenosaires2024
     ports:
-      - "5050:80"
+      - "5051:80"  

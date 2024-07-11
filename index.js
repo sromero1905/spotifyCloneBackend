@@ -1,18 +1,28 @@
-const { log } = require('console')
+const cors = require('cors')
 const express = require('express')
+const  routerApi = require('./routes/index')
 require('dotenv').config()
+
+
 const app = express()
 
-app.get('/',(req,res)=>{
-    res.send('hola a todos')
-})
 
 
 
 
 
+
+//midleware
+app.use(cors());
+app.use(express.json());
+
+
+
+
+
+//routes/server
+routerApi(app)
 const port = process.env.PORT
-
 app.listen(port,()=>{
     console.log(`servidor cuorriendo en el puerto: ${port}`);
 })
