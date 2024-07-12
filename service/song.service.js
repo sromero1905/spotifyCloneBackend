@@ -1,58 +1,74 @@
-const boom = require("@hapi/boom");
-const { models } = require("../libs/sequelize");
+const boom = require('@hapi/boom');
+const { models } = require('../libs/sequelize');
 
 class SongService {
   constructor() {}
 
   async find() {
-    const songs = await models.Song.findAll({
-      attributes: { exclude: ["albumId", "genreId", "createdAt"] },
-    });
-    return songs;
-  }
-
-  async create(data) {
-    const newSong = await models.Song.create(data);
-    return newSong;
+    try {
+      const songs = await models.Song.findAll({
+        include: [
+          {
+            model: models.Artist,
+            as: 'artist',
+            attributes: ['name', 'lastName'],
+          },
+        ],
+        attributes: { exclude: ["artistId","createdAt","albumId","genreId","releaseDate"] },
+      });
+      return songs;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async findOne(id) {
     const song = await models.Song.findByPk(id, {
       include: [
         {
-          model: models.Album,
-          as: "album",
-          attributes: ["title"],
+          model: models.Artist,
+          as: 'artist',
+          attributes: ['name', 'lastName'],
         },
         {
-          model: models.Genre,
-          as: "genre",
-          attributes: ["title"], 
-        }, 
+          model: models.Album,
+          as: 'album',
+          attributes: ['title'],
+        },
+       
       ],
-       attributes: { exclude: ["albumId", "genreId"] },  
+      attributes: { exclude: ["artistId","createdAt","albumId","genreId"] },
     });
     if (!song) {
-      throw boom.notFound("song not found");
+      throw boom.notFound('Song not found');
     }
     return song;
+  }
+
+  async create(data) {
+    try {
+    const newSong = await models.Song.create(data);
+    return newSong;
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   async update(id, changes) {
     const song = await models.Song.findByPk(id);
     if (!song) {
-      throw boom.notFound("song not found");
+      throw boom.notFound('Song not found');
     }
-    const rta = await song.update(changes);
-    return rta;
+    const updatedSong = await song.update(changes);
+    return updatedSong;
   }
 
   async delete(id) {
     const song = await models.Song.findByPk(id);
     if (!song) {
-      throw boom.notFound("song not found");
+      throw boom.notFound('Song not found');
     }
-    const rta = await song.destroy();
+    await song.destroy();
     return { rta: true };
   }
 }

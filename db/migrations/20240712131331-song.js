@@ -1,6 +1,6 @@
 'use strict';
 
-const { ARTIST_SONG_TABLE, ArtistSongSchema } = require('../models/artistSong.model');
+const { ARTIST_SONG_TABLE, ArtistSongSchema } = require('../models/artistSongs.model');
 
 module.exports = {
   async up(queryInterface, Sequelize) {

@@ -54,12 +54,7 @@ class Artist extends Model {
     static associate(models) {
         this.belongsTo(models.Manager, { as: 'manager' });
         this.hasMany(models.Album, { as: 'albums', foreignKey: 'artistId' });
-        this.belongsToMany(models.Song, {
-            through: models.ArtistSong,
-            as: 'songs',
-            foreignKey: 'artistId',
-            otherKey: 'songId'
-        });
+        this.hasMany(models.Song, { as: 'songs', foreignKey: 'artistId' }); // Nueva asociación
     }
     static config(sequelize) {
         return {

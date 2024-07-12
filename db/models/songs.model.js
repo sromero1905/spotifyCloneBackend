@@ -49,6 +49,17 @@ const SongSchema = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
+    },
+    artistId: {
+        field: 'artist_id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'artists',
+            key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
     }
 };
 
@@ -56,12 +67,7 @@ class Song extends Model {
     static associate(models) {
         this.belongsTo(models.Genre, { as: 'genre' });
         this.belongsTo(models.Album, { as: 'album' });
-        this.belongsToMany(models.Artist, {
-            through: models.ArtistSong,
-            as: 'artists',
-            foreignKey: 'songId',
-            otherKey: 'artistId'
-        });
+        this.belongsTo(models.Artist, { as: 'artist', foreignKey: 'artistId' });
     }
     static config(sequelize) {
         return {

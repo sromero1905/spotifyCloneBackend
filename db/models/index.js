@@ -4,7 +4,7 @@ const { Genre, GenresSchema } = require('./genres.model');
 const { User, UserSchema } = require('./user.model');
 const { Manager, ManagerSchema } = require('./manager.model');
 const { Album, AlbumSchema } = require('./album.model');
-const { ArtistSong, ArtistSongSchema } = require('./artistSong.model');
+
 
 function setUpModels(sequelize) {
     // Inicializar modelos
@@ -14,7 +14,7 @@ function setUpModels(sequelize) {
     User.init(UserSchema, User.config(sequelize));
     Manager.init(ManagerSchema, Manager.config(sequelize));
     Album.init(AlbumSchema, Album.config(sequelize));
-    ArtistSong.init(ArtistSongSchema, ArtistSong.config(sequelize));
+
 
     // Configurar asociaciones
     Artist.associate(sequelize.models);
@@ -22,7 +22,7 @@ function setUpModels(sequelize) {
     Song.associate(sequelize.models);
     Genre.associate(sequelize.models);
     Manager.associate(sequelize.models);
-    ArtistSong.associate(sequelize.models);
+
 }
 
 module.exports = setUpModels;

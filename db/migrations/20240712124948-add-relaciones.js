@@ -3,7 +3,7 @@ const { SONG_TABLE } = require('../models/songs.model');
 const { ALBUM_TABLE } = require('../models/album.model');
 const { ARTIST_TABLE } = require('../models/artist.model');
 const { MANAGER_TABLE } = require('../models/manager.model');
-const { ARTIST_SONG_TABLE, ArtistSongSchema } = require('../models/artistSong.model');
+const { ARTIST_SONG_TABLE, ArtistSongSchema } = require('../models/artistSongs.model');
 
 
 
