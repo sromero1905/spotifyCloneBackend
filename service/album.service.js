@@ -16,7 +16,13 @@ class albumService {
         }
         
         async findOne(id){
-        const album = await models.Album.findByPk(id)
+        const album = await models.Album.findByPk(id,{
+            include:[{
+                model:models.Song,
+                as:'songs',
+                attributes:['title']
+            }]
+        })
         if(!album){
             throw boom.notFound('Album not found')
         }
