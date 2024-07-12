@@ -41,7 +41,7 @@ const SongSchema = {
     },
     albumId: {
         field: 'album_id',
-        allowNull: false,
+        allowNull: true,
         type: DataTypes.INTEGER,
         references: {
             model: 'album',
