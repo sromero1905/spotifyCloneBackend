@@ -4,6 +4,7 @@ const songRouter= require('./song.routes')
 const genreRouter = require('./genres.routes')
 const albumRouter = require('./album.routes')
 const managerRouter = require('./manager.routes')
+const artistRouter = require('./artist.routes')
 
 function routerApi(app){
   
@@ -18,6 +19,8 @@ router.use('/genre',genreRouter);
 router.use('/album',albumRouter)
 
 router.use('/manager',managerRouter)
+
+router.use('/artist',artistRouter)
 }
 
 module.exports = routerApi

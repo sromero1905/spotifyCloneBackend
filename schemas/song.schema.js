@@ -23,7 +23,9 @@ const createSongSchema = Joi.object({
 const updateSongSchema = Joi.object({
     title:title,
     duration:duration,
-    releaseDate:releaseDate
+    releaseDate:releaseDate,
+    albumId:albumId,
+    genreId:genreId
 })
 
 
