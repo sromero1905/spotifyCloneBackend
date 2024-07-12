@@ -38,13 +38,15 @@ const AlbumSchema = {
         },
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
-    }
+    },
+    
 }
 
 
 class Album extends Model{
     static associate (models){
         this.belongsTo(models.Artist, { as:'artist' })
+        this.hasMany(models.Song,{ as:'songs',foreignKey:'albumId' })
     }
     static config(sequelize){
         return{

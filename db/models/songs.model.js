@@ -38,6 +38,17 @@ const SongSchema = {
         },
         onUpdate: "CASCADE",
         onDelete:'SET NULL'
+    },
+    albumId:{
+        field:'album_id',
+        allowNull:false,
+        type:DataTypes.INTEGER,
+        references:{
+            model:'artist',
+            key:'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
     }
 }
 
@@ -45,6 +56,7 @@ const SongSchema = {
 class Song extends Model{
     static associate (models){
         this.belongsTo(models.Genre, { as:'genre' })
+        this.belongsTo(models.Album, { as: 'album' });
     }
     static config(sequelize){
         return{
