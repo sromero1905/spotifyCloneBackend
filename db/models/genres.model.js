@@ -34,7 +34,10 @@ createdAt: {
 
 class Genre extends Model{
     static associate (models){
-        //
+        this.hasMany(models.Song,{
+            as:'songs',
+            foreignKey:'genreId'
+        })
     }
     static config(sequelize){
         return{

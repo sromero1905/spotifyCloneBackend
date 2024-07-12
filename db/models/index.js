@@ -20,7 +20,8 @@ Album.init(AlbumSchema, Album.config(sequelize))
 // Configurar asociaciones
 Artist.associate(sequelize.models);
 Album.associate(sequelize.models);
-
+Song.associate(sequelize.models);
+Genre.associate(sequelize.models)
 }
 
 module.exports = setUpModels

@@ -27,13 +27,24 @@ const SongSchema = {
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW
-      }
+      },
+    genreId:{
+        field:'genre_id',
+        allowNull:false,
+        type:DataTypes.INTEGER,
+        reference:{
+            model:'genres',
+            key:'id'
+        },
+        onUpdate: "CASCADE",
+        onDelete:'SET NULL'
+    }
 }
 
 
 class Song extends Model{
     static associate (models){
-        //
+        this.belongsTo(models.Genre, { as:'genre' })
     }
     static config(sequelize){
         return{
