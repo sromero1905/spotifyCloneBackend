@@ -13,12 +13,13 @@ function setUpModels(sequelize){
 Song.init(SongSchema, Song.config(sequelize)),
 Artist.init(ArtistSchema, Artist.config(sequelize))
 Genre.init(GenresSchema, Genre.config(sequelize))
-
 User.init(UserSchema, User.config(sequelize))
 Manager.init(ManagerSchema, Manager.config(sequelize))
 Album.init(AlbumSchema, Album.config(sequelize))
 
-
+// Configurar asociaciones
+Artist.associate(sequelize.models);
+Album.associate(sequelize.models);
 
 }
 

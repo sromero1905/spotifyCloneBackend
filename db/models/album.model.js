@@ -27,13 +27,24 @@ const AlbumSchema = {
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW
+    },
+    artistId:{
+        field:'artist_id',
+        allowNull:false,
+        type:DataTypes.INTEGER,
+        references:{
+            model:'artist',
+            key:'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
     }
 }
 
 
 class Album extends Model{
     static associate (models){
-        //
+        this.belongsTo(models.Artist, { as:'artist' })
     }
     static config(sequelize){
         return{

@@ -43,7 +43,10 @@ createdAt: {
 
 class Artist extends Model{
     static associate (models){
-        //
+        this.hasMany(models.Album,{
+            as:'albums',
+            foreignKey: 'artistId'
+        })
     }
     static config(sequelize){
         return{
