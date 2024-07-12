@@ -6,6 +6,7 @@ const lastName = Joi.string()
 const info = Joi.string()
 const birthDate = Joi.date()
 const image =  Joi.string()
+const managerId = Joi.number().integer()
 
 const getArtistSchema = Joi.object({
     id:id.required()
@@ -17,6 +18,7 @@ const createArtistSchema = Joi.object({
     info:info.required(),
     birthDate: birthDate.required(),
     image: image.required(),
+    managerId:managerId.required()
 });
 
 const updateArtistSchema = Joi.object({
@@ -24,7 +26,8 @@ const updateArtistSchema = Joi.object({
     lastName: lastName,
     info:info ,
     birthDate: birthDate ,
-    image: image
+    image: image,
+    managerId:managerId
 })
 
 

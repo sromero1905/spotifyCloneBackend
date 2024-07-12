@@ -5,8 +5,12 @@ class artistService {
   constructor() {}
 
   async find() {
+    try {
     const artists = await models.Artist.findAll();
     return artists;
+    } catch (error) {
+        console.error(error);
+    }
   }
 
   async create(data) {
@@ -15,15 +19,7 @@ class artistService {
   }
 
   async findOne(id) {
-    const artist = await models.Artist.findByPk(id, {
-      include: [
-        {
-          model: models.Album,
-          as: "albums",
-          attributes: ["title"],
-        },
-      ],
-    });
+    const artist = await models.Artist.findByPk(id);
     if (!artist) {
       throw boom.notFound("Artist not found");
     }

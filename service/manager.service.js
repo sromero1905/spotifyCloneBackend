@@ -15,12 +15,20 @@ const newmanager = await models.Manager.create(data)
 return newmanager
 }
 
-async findOne(id){
-const manager = await models.Manager.findByPk(id)
-if(!manager){
-    throw boom.notFound('Manager not exist')
-}
-return manager
+async findOne(id) {
+    const manager = await models.Manager.findByPk(id, {
+        include: {
+            model: models.Artist,
+            as: 'artist',
+            attributes: ['name', 'lastName']
+        },
+        attributes: { exclude: ["artistId","id","createdAt"] },
+       
+    });
+    if (!manager) {
+        throw boom.notFound('Manager not found');
+    }
+    return manager;
 }
 
 
