@@ -33,7 +33,7 @@ const ManagerSchema = {
 
 class Manager extends Model{
     static associate (models){
-        //
+        this.hasMany(models.Artist,{ as:'artist',foreignKey:'managerId' })
     }
     static config(sequelize){
         return{

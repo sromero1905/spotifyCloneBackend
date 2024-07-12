@@ -22,6 +22,7 @@ Artist.associate(sequelize.models);
 Album.associate(sequelize.models);
 Song.associate(sequelize.models);
 Genre.associate(sequelize.models)
+Manager.associate(sequelize.models)
 }
 
 module.exports = setUpModels

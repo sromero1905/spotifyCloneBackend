@@ -37,16 +37,30 @@ createdAt: {
     type: DataTypes.DATE,
     field: 'created_at',
     defaultValue: Sequelize.NOW
+  },
+
+managerId:{
+    field:'manager_id',
+    allowNull:false,
+    type:DataTypes.INTEGER,
+    references: {
+        model: 'manager',
+        key: 'id'
+    },
+    onUpdate: 'CASCADE',
+    onDelete: 'SET NULL'
   }
 }
 
 
 class Artist extends Model{
     static associate (models){
+        this.belongsTo(models.Manager, { as:'manager' })
         this.hasMany(models.Album,{
             as:'albums',
             foreignKey: 'artistId'
         })
+
     }
     static config(sequelize){
         return{
