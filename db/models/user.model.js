@@ -18,7 +18,8 @@ const UserSchema = {
         allowNull:false,
         unique:true,
         type:DataTypes.STRING,
-        field:'user_name'
+        field:'user_name',
+        unique:true
     },
     name:{
         allowNull:false,
@@ -34,7 +35,12 @@ const UserSchema = {
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW
-      }
+      },
+    mail:{
+        allowNull:false,
+        type:DataTypes.STRING,
+        unique:true
+    }
 
 }
 
