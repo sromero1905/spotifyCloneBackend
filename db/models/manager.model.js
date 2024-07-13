@@ -14,6 +14,10 @@ const ManagerSchema = {
         allowNull:false,
         type:DataTypes.STRING
     },
+    password:{
+        allowNull:true,
+        type:DataTypes.STRING
+    },
     lastName:{
         allowNull:false,
         field:'last_name',
@@ -28,7 +32,12 @@ const ManagerSchema = {
         type: DataTypes.DATE,
         field: 'created_at',
         defaultValue: Sequelize.NOW
-      }
+    },
+    role:{
+        allowNull:true,
+        type:DataTypes.STRING,
+        defaultValue: 'admin'
+    }
 }
 
 class Manager extends Model{
